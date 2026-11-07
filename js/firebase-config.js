@@ -1,16 +1,17 @@
-// ⚠️ Ranplase ak pwòp konfigirasyon Firebase ou
-// Kreye yon pwojè sou https://console.firebase.google.com
+// Configuration Firebase pour TIKA MARCHE
+// Projet: tika-online-store
+// SDK: Firebase v13.2.0
+//
+// ⚠️ ENPÒTAN: Ou dwe aktive Realtime Database nan Firebase Console
+// epi ranplase databaseURL a ak URL reyèl ou a (gade anba a).
 
 export const firebaseConfig = {
-  apiKey: "AIzaSyCG_LO9IOfwEly0uar-Pu63b8FpjADSnqE",
-  authDomain: "g-communication-2026-c5af2.firebaseapp.com",
-  databaseURL: "https://g-communication-2026-c5af2-default-rtdb.firebaseio.com",
-  projectId: "g-communication-2026-c5af2",
-  storageBucket: "g-communication-2026-c5af2.firebasestorage.app",
-  messagingSenderId: "953142314141",
-  appId: "1:953142314141:web:967f75943e55584c36c074"
+  apiKey: "AIzaSyAO4uNb5enHw1Xc5KGlRTDLQgmXbBzCk-Q",
+  authDomain: "tika-online-store.firebaseapp.com",
+  databaseURL: "https://tika-online-store-default-rtdb.firebaseio.com",
+  projectId: "tika-online-store",
+  storageBucket: "tika-online-store.firebasestorage.app",
+  messagingSenderId: "678762135005",
+  appId: "1:678762135005:web:415c251d070ed8db910a34",
+  measurementId: "G-SZEHH1MPP9"
 };
-
-// Ou ka reyitilize menm pwojè a si ou vle,
-// men li pi bon pou kreye yon nouvo pwojè "tika-marche"
-// pou separe done PIPLIS ak TIKA.
