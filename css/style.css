@@ -122,7 +122,7 @@ header{
 .step p{font-size:.8rem}
 
 /* GESNER */
-.gesner-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-bottom:1.5rem}
+.gesner-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1rem;margin-bottom:1.5rem}
 .video-card{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
 .video-card video{width:100%;display:block;background:#000}
 .video-card .caption{font-size:.78rem;color:var(--muted);padding:.6rem .9rem;margin:0}
@@ -234,7 +234,7 @@ footer{border-top:1px solid var(--line);padding:2.5rem 0 1.8rem;margin-top:2rem;
 @media(max-width:900px){
   .hero-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
   .steps{grid-template-columns:repeat(2,1fr)}
-  .gesner-grid,.cert-grid{grid-template-columns:1fr}
+  .cert-grid{grid-template-columns:1fr}
   .nav-links{display:none;position:fixed;inset:68px 0 auto 0;flex-direction:column;background:rgba(10,15,28,.98);padding:1rem 22px 1.5rem;border-bottom:1px solid var(--line);gap:0}
   .nav-links.open{display:flex}
   .nav-links a{padding:.9rem 0;border-bottom:1px solid var(--line)}
