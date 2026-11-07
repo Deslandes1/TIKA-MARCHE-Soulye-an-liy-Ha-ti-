@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin — TIKA MARCHE</title>
+<link rel="stylesheet" href="css/style.css" />
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
+<script type="module" src="js/admin.js" defer></script>
+</head>
+<body class="admin-body">
+
+<div id="adminLogin" class="admin-login">
+  <div class="admin-login-box">
+    <h1>🔐 Admin TIKA MARCHE</h1>
+    <p>Antre ak email ak modpas admin ou.</p>
+    <form id="adminAuthForm">
+      <input type="email" name="email" placeholder="Email admin" required />
+      <input type="password" name="password" placeholder="Modpas" required />
+      <button type="submit" class="btn btn-primary btn-block">Konekte</button>
+      <div id="adminAuthStatus" class="form-status"></div>
+    </form>
+  </div>
+</div>
+
+<div id="adminPanel" class="admin-panel" style="display:none">
+  <header class="admin-header">
+    <h1>👟 Admin — TIKA MARCHE</h1>
+    <button id="adminLogout" class="btn btn-outline">Dekonekte</button>
+  </header>
+
+  <div class="admin-wrap">
+    <!-- ADD PRODUCT -->
+    <section class="admin-card">
+      <h2>➕ Ajoute yon nouvo pwodwi</h2>
+      <form id="addProductForm">
+        <div class="form-grid">
+          <input type="text" name="name" placeholder="Non pwodwi" required />
+          <input type="number" name="price" placeholder="Pri (HTG)" required />
+          <input type="text" name="description" placeholder="Deskripsyon" class="full" required />
+          <input type="file" name="image" accept="image/*" required class="full" />
+        </div>
+        <button type="submit" class="btn btn-primary">Ajoute</button>
+        <div id="addProductStatus" class="form-status"></div>
+      </form>
+    </section>
+
+    <!-- PRODUCT LIST -->
+    <section class="admin-card">
+      <h2>📦 Pwodwi yo</h2>
+      <div id="adminProducts" class="admin-products"></div>
+    </section>
+
+    <!-- ORDERS -->
+    <section class="admin-card">
+      <h2>🧾 Kòmand yo</h2>
+      <div id="adminOrders"></div>
+    </section>
+  </div>
+</div>
+
+</body>
+</html>
