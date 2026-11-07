@@ -1,30 +1,45 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, onValue, push, set, remove, query, orderByChild, equalTo, get, update } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+import { getAnalytics, isSupported } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-analytics.js";
+import { getDatabase, ref, onValue, push, get, set, remove } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-database.js";
+import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword, signOut, onAuthStateChanged, updateProfile } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
+
+isSupported().then((yes) => {
+  if (yes) { try { getAnalytics(app); } catch (e) {} }
+}).catch(() => {});
+
 const db = getDatabase(app);
 const auth = getAuth(app);
 
 const $ = (id) => document.getElementById(id);
 const money = (n) => Number(n).toLocaleString("fr-HT") + " HTG";
 
+/* ============================================================
+   ADMIN CONSTANTS — TIKA
+   ============================================================ */
+const TIKA_NAME = "Tika";
+const TIKA_PASS = "T2026";
+const ADMIN_KEY = "tika_admin_logged_in";
+
 let cart = [];
 let currentUser = null;
+let adminProductsUnsub = null;
 
 /* ---------- LOADER ---------- */
 window.addEventListener("load", () => {
   setTimeout(() => $("loader").classList.add("hidden"), 600);
 });
 
-/* ---------- PRODUITS ---------- */
+/* ---------- PRODUITS (boutik piblik) ---------- */
 function renderProducts() {
   const grid = $("productsGrid");
   onValue(ref(db, "products"), (snap) => {
     const data = snap.val();
     if (!data) {
       grid.innerHTML = '<p class="loading-text">Pa gen pwodwi pou kounye a.</p>';
+      $("featuredProduct").innerHTML = "<p style='color:var(--muted)'>Boutik la ap vini byento…</p>";
       return;
     }
     const items = Object.entries(data).map(([id, p]) => ({ id, ...p }));
@@ -40,7 +55,6 @@ function renderProducts() {
       </div>
     `).join("");
 
-    // Featured
     const featured = items[0];
     if (featured) {
       $("featuredProduct").innerHTML = `
@@ -71,7 +85,6 @@ function openCart() {
     container.innerHTML = "<p style='color:var(--muted);text-align:center;padding:1rem'>Panye ou vid.</p>";
     $("cartTotal").textContent = "0 HTG";
   } else {
-    // Rekipere detay pwodwi yo
     get(ref(db, "products")).then((snap) => {
       const all = snap.val() || {};
       let total = 0;
@@ -103,16 +116,15 @@ window.removeFromCart = (id) => {
 $("checkoutForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const status = $("checkoutStatus");
+  status.style.display = "block";
 
   if (cart.length === 0) {
     status.textContent = "Panye ou vid.";
-    status.style.display = "block";
     return;
   }
 
   if (!currentUser) {
     status.textContent = "Ou dwe konekte anvan ou kòmande.";
-    status.style.display = "block";
     return;
   }
 
@@ -131,14 +143,12 @@ $("checkoutForm").addEventListener("submit", async (e) => {
     createdAt: Date.now(),
   };
 
-  // Kalkile total
   const pSnap = await get(ref(db, "products"));
   const all = pSnap.val() || {};
   order.total = cart.reduce((s, c) => s + (all[c.id]?.price || 0) * c.qty, 0);
 
   await push(ref(db, "orders"), order);
   status.textContent = "✅ Kòmand ou resevwa! Nou pral kontakte w pou peman ak livrezon.";
-  status.style.display = "block";
   cart = [];
   updateCart();
   setTimeout(() => {
@@ -147,7 +157,7 @@ $("checkoutForm").addEventListener("submit", async (e) => {
   }, 3000);
 });
 
-/* ---------- AUTH ---------- */
+/* ---------- AUTH KLIYAN ---------- */
 onAuthStateChanged(auth, (user) => {
   currentUser = user;
   $("authBtn").textContent = user ? "Kont" : "Konekte";
@@ -165,14 +175,13 @@ $("loginForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const f = new FormData(e.target);
   const status = $("loginStatus");
+  status.style.display = "block";
   try {
     await signInWithEmailAndPassword(auth, f.get("email"), f.get("password"));
     status.textContent = "✅ Konekte!";
-    status.style.display = "block";
     setTimeout(() => $("authModal").classList.remove("open"), 800);
   } catch (err) {
     status.textContent = "Erè: " + (err.message || "Impossible");
-    status.style.display = "block";
   }
 });
 
@@ -180,15 +189,14 @@ $("signupForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const f = new FormData(e.target);
   const status = $("signupStatus");
+  status.style.display = "block";
   try {
     const cred = await createUserWithEmailAndPassword(auth, f.get("email"), f.get("password"));
     await updateProfile(cred.user, { displayName: f.get("name") });
     status.textContent = "✅ Kont kreye!";
-    status.style.display = "block";
     setTimeout(() => $("authModal").classList.remove("open"), 800);
   } catch (err) {
     status.textContent = "Erè: " + (err.message || "Impossible");
-    status.style.display = "block";
   }
 });
 
@@ -202,7 +210,182 @@ $("contactForm").addEventListener("submit", (e) => {
   $("contactStatus").style.display = "block";
 });
 
-/* ---------- UI ---------- */
+/* ============================================================
+   SETTINGS / ADMIN (TIKA)
+   ============================================================ */
+
+function isAdminLoggedIn() {
+  try { return localStorage.getItem(ADMIN_KEY) === "1"; } catch (e) { return false; }
+}
+
+function setAdminLoggedIn(v) {
+  try {
+    if (v) localStorage.setItem(ADMIN_KEY, "1");
+    else localStorage.removeItem(ADMIN_KEY);
+  } catch (e) {}
+}
+
+function showAdminPanel() {
+  $("adminLoginSection").style.display = "none";
+  $("adminPanelSection").style.display = "block";
+  loadAdminProducts();
+}
+
+function showAdminLogin() {
+  $("adminLoginSection").style.display = "block";
+  $("adminPanelSection").style.display = "none";
+}
+
+// Ouvèti settings modal
+$("settingsBtn").addEventListener("click", () => {
+  $("settingsModal").classList.add("open");
+  if (isAdminLoggedIn()) {
+    showAdminPanel();
+  } else {
+    showAdminLogin();
+  }
+});
+
+$("closeSettings").addEventListener("click", () => {
+  $("settingsModal").classList.remove("open");
+});
+
+// Login Tika
+$("adminLoginForm").addEventListener("submit", (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const name = (f.get("name") || "").trim();
+  const password = (f.get("password") || "").trim();
+  const status = $("adminLoginStatus");
+  status.style.display = "block";
+
+  if (name === TIKA_NAME && password === TIKA_PASS) {
+    setAdminLoggedIn(true);
+    status.style.background = "rgba(34,211,238,.1)";
+    status.style.borderColor = "rgba(34,211,238,.35)";
+    status.style.color = "#bdf0fb";
+    status.textContent = "✅ Byenveni Tika!";
+    setTimeout(() => {
+      showAdminPanel();
+      status.style.display = "none";
+      e.target.reset();
+    }, 600);
+  } else {
+    status.style.background = "rgba(255,71,87,.15)";
+    status.style.borderColor = "rgba(255,71,87,.4)";
+    status.style.color = "#ff8a95";
+    status.textContent = "❌ Non oswa modpas pa kòrèk.";
+  }
+});
+
+// Logout
+$("adminLogoutBtn").addEventListener("click", () => {
+  setAdminLoggedIn(false);
+  showAdminLogin();
+  $("adminLoginForm").reset();
+  $("adminLoginStatus").style.display = "none";
+  if (adminProductsUnsub) { adminProductsUnsub(); adminProductsUnsub = null; }
+});
+
+// Add product
+$("addProductForm").addEventListener("submit", async (e) => {
+  e.preventDefault();
+  const f = new FormData(e.target);
+  const file = f.get("image");
+  const status = $("addProductStatus");
+  status.style.display = "block";
+
+  if (!file || !file.size) {
+    status.style.background = "rgba(255,71,87,.15)";
+    status.style.borderColor = "rgba(255,71,87,.4)";
+    status.style.color = "#ff8a95";
+    status.textContent = "⚠️ Chwazi yon imaj pou pwodwi a.";
+    return;
+  }
+
+  if (file.size > 3 * 1024 * 1024) {
+    status.style.background = "rgba(255,71,87,.15)";
+    status.style.borderColor = "rgba(255,71,87,.4)";
+    status.style.color = "#ff8a95";
+    status.textContent = "⚠️ Imaj twò gwo (maks 3 MB). Chwazi yon imaj pi piti.";
+    return;
+  }
+
+  status.style.background = "rgba(34,211,238,.1)";
+  status.style.borderColor = "rgba(34,211,238,.35)";
+  status.style.color = "#bdf0fb";
+  status.textContent = "⏳ Ap trete imaj la…";
+
+  const reader = new FileReader();
+  reader.onload = async () => {
+    try {
+      const product = {
+        name: (f.get("name") || "").trim(),
+        price: Number(f.get("price")),
+        description: (f.get("description") || "").trim(),
+        image: reader.result,
+        createdAt: Date.now(),
+      };
+      await push(ref(db, "products"), product);
+      status.textContent = "✅ Pwodwi ajoute! Li parèt nan boutik la kounye a.";
+      e.target.reset();
+      setTimeout(() => (status.style.display = "none"), 3000);
+    } catch (err) {
+      status.style.background = "rgba(255,71,87,.15)";
+      status.style.borderColor = "rgba(255,71,87,.4)";
+      status.style.color = "#ff8a95";
+      status.textContent = "❌ Erè: " + (err.message || "Pa ka ajoute");
+    }
+  };
+  reader.readAsDataURL(file);
+});
+
+// Load admin products list
+function loadAdminProducts() {
+  if (adminProductsUnsub) adminProductsUnsub();
+  const container = $("adminProductsList");
+  container.innerHTML = '<p class="settings-empty">Ap chaje…</p>';
+
+  adminProductsUnsub = onValue(ref(db, "products"), (snap) => {
+    const data = snap.val();
+    if (!data) {
+      container.innerHTML = '<p class="settings-empty">Pa gen pwodwi ankò. Ajoute yon sèl anwo a.</p>';
+      return;
+    }
+    container.innerHTML = Object.entries(data).map(([id, p]) => `
+      <div class="admin-product">
+        <img src="${p.image || 'https://via.placeholder.com/60'}" alt="${p.name}" />
+        <div class="admin-product-info">
+          <b>${p.name}</b>
+          <small>${money(p.price)}</small>
+        </div>
+        <div class="actions">
+          <button class="btn-edit" onclick="window.editProductPrice('${id}', ${p.price})" title="Chanje pri">💰</button>
+          <button class="btn-del" onclick="window.deleteProductById('${id}')" title="Efase">🗑</button>
+        </div>
+      </div>
+    `).join("");
+  });
+}
+
+window.editProductPrice = async (id, oldPrice) => {
+  const newPrice = prompt("Nouvo pri an HTG:", oldPrice);
+  if (newPrice === null) return;
+  const num = Number(newPrice);
+  if (isNaN(num) || num < 0) {
+    alert("Pri pa valid. Antre yon chif pozitif.");
+    return;
+  }
+  await set(ref(db, "products/" + id + "/price"), num);
+};
+
+window.deleteProductById = async (id) => {
+  if (confirm("Efase pwodwi sa nèt? Ou p ap ka retounen.")) {
+    await remove(ref(db, "products/" + id));
+  }
+};
+
+/* ---------- NAV / UI ---------- */
 $("burger").addEventListener("click", () => $("navLinks").classList.toggle("open"));
 $("cartBtn").addEventListener("click", openCart);
 $("closeCart").addEventListener("click", () => $("cartModal").classList.remove("open"));
@@ -219,5 +402,9 @@ document.querySelectorAll(".auth-tabs button").forEach((b) => {
 
 $("year").textContent = new Date().getFullYear();
 
-/* ---------- INIT ---------- */
+/* ---------- HASH ROUTING (#settings) ---------- */
+if (location.hash === "#settings") {
+  setTimeout(() => $("settingsBtn").click(), 800);
+}
+
 renderProducts();
