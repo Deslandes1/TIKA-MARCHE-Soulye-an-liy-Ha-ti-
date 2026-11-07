@@ -1,6 +1,6 @@
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getDatabase, ref, push, set, remove, onValue, get } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
-import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { initializeApp } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-app.js";
+import { getDatabase, ref, push, set, remove, onValue } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-database.js";
+import { getAuth, signInWithEmailAndPassword, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/13.2.0/firebase-auth.js";
 import { firebaseConfig } from "./firebase-config.js";
 
 const app = initializeApp(firebaseConfig);
@@ -10,7 +10,6 @@ const auth = getAuth(app);
 const $ = (id) => document.getElementById(id);
 const money = (n) => Number(n).toLocaleString("fr-HT") + " HTG";
 
-/* ---------- AUTH ADMIN ---------- */
 onAuthStateChanged(auth, (user) => {
   if (user) {
     $("adminLogin").style.display = "none";
@@ -36,14 +35,12 @@ $("adminAuthForm").addEventListener("submit", async (e) => {
 
 $("adminLogout").addEventListener("click", () => signOut(auth));
 
-/* ---------- AJOUTE PWODWI ---------- */
 $("addProductForm").addEventListener("submit", async (e) => {
   e.preventDefault();
   const f = new FormData(e.target);
   const file = f.get("image");
   const status = $("addProductStatus");
 
-  // Konvèti imaj an base64 (senp pou GitHub Pages)
   const reader = new FileReader();
   reader.onload = async () => {
     const product = {
@@ -62,7 +59,6 @@ $("addProductForm").addEventListener("submit", async (e) => {
   reader.readAsDataURL(file);
 });
 
-/* ---------- LISTE PWODWI ---------- */
 function loadProducts() {
   onValue(ref(db, "products"), (snap) => {
     const data = snap.val();
@@ -97,7 +93,6 @@ window.deleteProduct = async (id) => {
   }
 };
 
-/* ---------- KÒMAND ---------- */
 function loadOrders() {
   onValue(ref(db, "orders"), (snap) => {
     const data = snap.val();
