@@ -4,360 +4,358 @@
 <meta charset="UTF-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 <title>TIKA MARCHE | Soulye an liy — Haïti 🇭🇹</title>
-
 <link rel="icon" type="image/svg+xml" href="favicon.svg" />
-<meta name="description" content="TIKA MARCHE — Boutique en ligne de souliers en Haïti. Paiement MonCash & NatCash. Livraison à domicile." />
-<meta name="theme-color" content="#0a0f1c" />
-
+<meta name="description" content="TIKA MARCHE — Boutique en ligne de souliers en Haïti. Paiement MonCash & NatCash. Livraison ou retrait." />
+<meta name="theme-color" content="#faf7f2" />
 <link rel="preconnect" href="https://fonts.googleapis.com" />
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
 <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet" />
-
 <script type="module" src="js/app.js" defer></script>
-<link rel="stylesheet" href="css/style.css" />
 
 <style>
-/* ===== SETTINGS / ADMIN EXTRA STYLES ===== */
-.settings-box{max-width:580px}
-.admin-header-row{
-  display:flex;justify-content:space-between;align-items:center;
-  margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--line);
+:root{
+  --bg:#faf7f2;
+  --bg-alt:#f3ece1;
+  --card:#ffffff;
+  --text:#2a2420;
+  --text-soft:#4a4038;
+  --muted:#7a6f65;
+  --border:#e8ddd0;
+  --border-strong:#d4c5b2;
+  --primary:#c45a1c;
+  --primary-hover:#a04515;
+  --wa:#25D366;
+  --wa-dark:#1da851;
+  --success:#2d6a3e;
+  --warning:#c8861a;
+  --danger:#b83a2e;
+  --font-h:"Space Grotesk",sans-serif;
+  --font-b:"Inter",sans-serif;
+  --max:1180px;
+  --radius:12px;
+  --shadow:0 2px 8px rgba(42,36,32,.06);
+  --shadow-hover:0 8px 24px rgba(42,36,32,.12);
 }
-.admin-header-row h2{margin:0;font-size:1.05rem}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);font-family:var(--font-b);
+  line-height:1.6;-webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+img{max-width:100%;display:block}
+a{color:inherit;text-decoration:none}
+ul{list-style:none}
+.wrap{width:100%;max-width:var(--max);margin-inline:auto;padding-inline:22px}
+h1,h2,h3,h4{font-family:var(--font-h);font-weight:700;line-height:1.2;letter-spacing:-.01em;color:var(--text)}
+h1{font-size:clamp(1.9rem,4.5vw,3.2rem)}
+h2{font-size:clamp(1.5rem,3vw,2.2rem)}
+h3{font-size:1.05rem}
+p{color:var(--text-soft)}
+.grad{color:var(--primary)}
+
+/* Header */
+header{
+  position:sticky;top:0;z-index:900;background:rgba(250,247,242,.95);
+  backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+  border-bottom:1px solid var(--border);
+}
+.nav{display:flex;align-items:center;justify-content:space-between;height:66px;gap:1rem}
+.logo{display:flex;align-items:center;gap:.65rem;font-family:var(--font-h);font-weight:700;font-size:1.05rem;color:var(--text)}
+.logo-mark{
+  width:38px;height:38px;border-radius:10px;display:grid;place-items:center;
+  background:var(--primary);color:#fff;font-size:1.2rem;
+  box-shadow:0 3px 10px rgba(196,90,28,.3);
+}
+.logo small{display:block;font-family:var(--font-b);font-size:.58rem;font-weight:600;letter-spacing:.18em;color:var(--muted);text-transform:uppercase;margin-top:-2px}
+.nav-links{display:flex;gap:1.5rem}
+.nav-links a{font-size:.88rem;font-weight:500;color:var(--text-soft);transition:color .2s}
+.nav-links a:hover{color:var(--primary)}
+.nav-actions{display:flex;align-items:center;gap:.6rem}
+.btn-settings{
+  width:42px;height:42px;border-radius:10px;border:1px solid var(--border);
+  background:#fff;color:var(--text);cursor:pointer;font-size:1.1rem;
+  display:grid;place-items:center;transition:.2s;
+}
+.btn-settings:hover{border-color:var(--primary);color:var(--primary)}
+.burger{display:none;width:42px;height:42px;border-radius:10px;border:1px solid var(--border);background:#fff;cursor:pointer;position:relative}
+.burger span{display:block;width:18px;height:2px;background:var(--text);margin:0 auto;position:relative;border-radius:2px}
+.burger span::before,.burger span::after{content:"";position:absolute;left:0;width:18px;height:2px;background:var(--text);border-radius:2px;transition:.25s}
+.burger span::before{top:-6px}.burger span::after{top:6px}
+
+/* Hero */
+.hero{padding:3rem 0 3.5rem;background:linear-gradient(180deg,#faf7f2 0%,#f3ece1 100%)}
+.hero-grid{display:grid;grid-template-columns:1.1fr .9fr;gap:2.5rem;align-items:center}
+.pill{display:inline-block;padding:.4rem .9rem;border-radius:999px;font-size:.75rem;font-weight:600;background:#fff;border:1px solid var(--border-strong);color:var(--text-soft);margin-bottom:1.2rem}
+.hero h1{margin-bottom:1rem}
+.hero > p,.hero-sub{font-size:1.02rem;max-width:52ch;margin-bottom:1.7rem}
+.hero-actions{display:flex;gap:.7rem;flex-wrap:wrap;margin-bottom:2rem}
+.btn{
+  display:inline-flex;align-items:center;justify-content:center;gap:.5rem;
+  padding:.85rem 1.5rem;border-radius:10px;font-weight:600;font-size:.92rem;
+  font-family:var(--font-b);cursor:pointer;border:1px solid transparent;
+  transition:all .2s;white-space:nowrap;text-decoration:none;
+}
+.btn:hover{transform:translateY(-1px)}
+.btn-primary{background:var(--primary);color:#fff;box-shadow:0 3px 12px rgba(196,90,28,.25)}
+.btn-primary:hover{background:var(--primary-hover);box-shadow:0 6px 18px rgba(196,90,28,.35)}
+.btn-ghost{background:#fff;border-color:var(--border-strong);color:var(--text)}
+.btn-ghost:hover{border-color:var(--primary);color:var(--primary)}
+.btn-wa{background:var(--wa);color:#fff;box-shadow:0 3px 12px rgba(37,211,102,.3)}
+.btn-wa:hover{background:var(--wa-dark);box-shadow:0 6px 18px rgba(37,211,102,.4)}
+.btn-block{width:100%}
+
+/* Hero video */
+.hero-video-card{background:#fff;border:1px solid var(--border);border-radius:16px;padding:.8rem;box-shadow:var(--shadow)}
+.hero-video-label{display:flex;align-items:center;gap:.55rem;font-size:.7rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);margin-bottom:.6rem}
+.hero-video-label .dot{width:8px;height:8px;border-radius:50%;background:var(--danger);animation:heroPulse 2s infinite}
+@keyframes heroPulse{0%,100%{opacity:1}50%{opacity:.4}}
+.hero-video-card video{width:100%;border-radius:12px;display:block;background:#000;max-height:500px;object-fit:contain}
+.hero-video-caption{margin-top:.6rem;font-size:.8rem;color:var(--muted);text-align:center}
+
+/* Sections */
+.section{padding:3.5rem 0}
+.section-head{margin-bottom:2rem}
+.section-head p{margin-top:.5rem}
+.section-title-line{display:inline-block;width:40px;height:3px;background:var(--primary);border-radius:2px;margin-bottom:.8rem}
+
+/* Products */
+.products-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:1.2rem}
+.product-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  overflow:hidden;transition:all .25s;display:flex;flex-direction:column;
+}
+.product-card:hover{box-shadow:var(--shadow-hover);transform:translateY(-2px);border-color:var(--border-strong)}
+.product-image{width:100%;height:220px;overflow:hidden;background:var(--bg-alt)}
+.product-image img{width:100%;height:100%;object-fit:cover;transition:transform .4s}
+.product-card:hover .product-image img{transform:scale(1.04)}
+.product-info{padding:1.1rem 1.2rem 1.3rem;display:flex;flex-direction:column;flex:1}
+.product-info h3{font-size:1.02rem;margin-bottom:.35rem;color:var(--text);font-weight:700}
+.product-price{font-family:var(--font-h);font-weight:700;font-size:1.25rem;color:var(--primary);margin-bottom:.65rem}
+.product-desc{font-size:.85rem;color:var(--muted);margin-bottom:.9rem;line-height:1.5;flex:1}
+.delivery-badge{
+  display:inline-flex;align-items:center;gap:.35rem;
+  font-size:.75rem;font-weight:700;padding:.35rem .7rem;
+  border-radius:8px;margin-bottom:.9rem;width:fit-content;
+}
+.delivery-badge.available{background:#e8f5e9;color:#2d6a3e;border:1px solid #a5d6a7}
+.delivery-badge.pickup{background:#fff3e0;color:#b86a1a;border:1px solid #ffcc80}
+.btn-buy{
+  width:100%;padding:.85rem;border-radius:10px;border:none;cursor:pointer;
+  background:var(--primary);color:#fff;font-weight:700;font-size:.9rem;
+  font-family:var(--font-b);transition:.2s;
+}
+.btn-buy:hover{background:var(--primary-hover)}
+.loading-text{text-align:center;padding:3rem;color:var(--muted);font-size:.95rem}
+
+/* How to buy steps */
+.steps{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:1rem}
+.step{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.4rem 1.2rem;text-align:center}
+.step b{
+  display:inline-grid;place-items:center;width:34px;height:34px;border-radius:50%;
+  background:var(--primary);color:#fff;font-size:.85rem;font-family:var(--font-h);
+  margin-bottom:.75rem;
+}
+.step h3{font-size:.95rem;margin-bottom:.35rem}
+.step p{font-size:.82rem;color:var(--muted);line-height:1.5}
+
+/* Payment info */
+.payment-section{background:var(--bg-alt)}
+.payment-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:1rem;margin-bottom:1.5rem}
+.payment-card{
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:1.3rem;text-align:center;
+}
+.payment-card .pay-icon{font-size:2rem;margin-bottom:.5rem;display:block}
+.payment-card h4{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.4rem;font-weight:700}
+.payment-card .pay-number{font-family:var(--font-h);font-weight:700;font-size:1.1rem;color:var(--primary);margin-bottom:.8rem;word-break:break-all}
+.pay-copy-btn{
+  width:100%;padding:.55rem;border-radius:8px;
+  background:var(--bg-alt);border:1px solid var(--border);color:var(--text-soft);
+  cursor:pointer;font-family:var(--font-b);font-size:.8rem;font-weight:600;transition:.2s;
+}
+.pay-copy-btn:hover{background:var(--primary);color:#fff;border-color:var(--primary)}
+.pay-copy-btn.copied{background:#e8f5e9;color:#2d6a3e;border-color:#a5d6a7}
+
+.security-warning{
+  background:#fff5f5;border:1px solid #ffcdd2;
+  border-radius:var(--radius);padding:1.2rem 1.4rem;margin-top:1rem;
+}
+.security-warning h4{color:var(--danger);font-size:.95rem;margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem}
+.security-warning ul{padding-left:1.2rem;list-style:disc}
+.security-warning li{color:var(--text-soft);font-size:.82rem;line-height:1.6;margin-bottom:.3rem}
+
+/* Gesner */
+.gesner-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:1.2rem;margin-bottom:1.5rem}
+.video-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);overflow:hidden}
+.video-card video{width:100%;display:block;background:#000}
+.video-card .caption{font-size:.82rem;color:var(--muted);padding:.7rem 1rem;margin:0;font-weight:600}
+.jarvis-portal-link{
+  display:flex;align-items:center;justify-content:center;gap:.5rem;
+  margin:0 1rem 1rem;padding:.75rem 1rem;border-radius:8px;
+  background:var(--primary);color:#fff;font-weight:700;font-size:.85rem;
+  font-family:var(--font-b);transition:.2s;
+}
+.jarvis-portal-link:hover{background:var(--primary-hover)}
+.cert-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:1rem;margin-bottom:1.2rem}
+.cert-card{
+  display:flex;align-items:center;gap:.8rem;
+  background:#fff;border:1px solid var(--border);border-radius:var(--radius);
+  padding:1rem;transition:.2s;
+}
+.cert-card:hover{border-color:var(--primary);box-shadow:var(--shadow)}
+.cert-card span{font-size:1.5rem;flex-shrink:0}
+.cert-card b{display:block;font-size:.88rem;color:var(--text);margin-bottom:.1rem}
+.cert-card small{font-size:.75rem;color:var(--muted)}
+.gesner-note{font-size:.85rem;color:var(--muted);text-align:center;margin-top:1rem}
+.gesner-note a{color:var(--primary);font-weight:600}
+
+/* Contact */
+.contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:1.2rem}
+.contact-card{background:#fff;border:1px solid var(--border);border-radius:var(--radius);padding:1.7rem}
+.contact-card h2{font-size:1.3rem;margin-bottom:.4rem}
+.contact-line{display:flex;gap:.9rem;padding:.9rem 0;border-bottom:1px solid var(--border);align-items:flex-start}
+.contact-line:last-of-type{border-bottom:0}
+.contact-line span{font-size:1.3rem;flex-shrink:0}
+.contact-line small{display:block;font-size:.7rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);margin-bottom:.15rem;font-weight:600}
+.contact-line a,.contact-line strong{font-size:.95rem;color:var(--text);font-weight:600;word-break:break-word}
+.contact-line a:hover{color:var(--primary)}
+.contact-card form{display:grid;gap:.75rem;margin-top:1rem}
+.contact-card input,.contact-card textarea{
+  width:100%;padding:.75rem .9rem;border:1px solid var(--border);
+  border-radius:8px;font-family:var(--font-b);font-size:.9rem;
+  color:var(--text);outline:none;background:#fff;transition:.2s;
+}
+.contact-card input:focus,.contact-card textarea:focus{border-color:var(--primary)}
+.form-status{display:none;margin-top:.7rem;padding:.7rem .9rem;border-radius:8px;font-size:.85rem;font-weight:500}
+.form-status.show{display:block}
+.form-status.success{background:#e8f5e9;color:#2d6a3e;border:1px solid #a5d6a7}
+.form-status.error{background:#fff5f5;color:#b83a2e;border:1px solid #ffcdd2}
+
+/* Footer */
+footer{border-top:1px solid var(--border);padding:2.5rem 0 1.5rem;background:#fff;margin-top:2rem}
+.footer-grid{display:grid;grid-template-columns:1.4fr 1fr 1fr;gap:2rem;margin-bottom:1.5rem}
+.footer-grid h5{font-family:var(--font-h);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;color:var(--text);margin-bottom:.8rem;font-weight:700}
+.footer-grid a{display:block;font-size:.85rem;color:var(--text-soft);margin-bottom:.45rem;transition:.2s}
+.footer-grid a:hover{color:var(--primary)}
+.footer-grid p{font-size:.85rem;color:var(--muted);max-width:34ch;margin-top:.7rem;line-height:1.6}
+.footer-admin-link{
+  background:none;border:none;color:var(--muted);cursor:pointer;
+  font-size:.75rem;padding:0;font-family:var(--font-b);margin-top:.7rem;
+  display:inline-flex;align-items:center;gap:.3rem;transition:.2s;
+}
+.footer-admin-link:hover{color:var(--primary)}
+.footer-bottom{border-top:1px solid var(--border);padding-top:1.2rem;display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-size:.78rem;color:var(--muted)}
+
+/* Modals */
+.modal{position:fixed;inset:0;background:rgba(42,36,32,.5);z-index:2000;display:none;align-items:center;justify-content:center;padding:1rem;backdrop-filter:blur(4px);-webkit-backdrop-filter:blur(4px)}
+.modal.open{display:flex}
+.modal-box{
+  background:#fff;border:1px solid var(--border);border-radius:16px;
+  padding:1.8rem;width:100%;max-width:480px;max-height:90vh;overflow-y:auto;
+  position:relative;box-shadow:0 20px 60px rgba(42,36,32,.25);
+}
+.modal-close{
+  position:absolute;top:1rem;right:1rem;width:34px;height:34px;
+  background:var(--bg-alt);border:none;border-radius:8px;
+  color:var(--text-soft);font-size:1rem;cursor:pointer;display:grid;place-items:center;
+  transition:.2s;
+}
+.modal-close:hover{background:var(--border);color:var(--text)}
+.modal-box h2{font-size:1.3rem;margin-bottom:1.2rem;padding-right:2.5rem}
+
+/* Order modal specific */
+.order-product{display:flex;gap:.9rem;align-items:center;padding:.9rem;background:var(--bg-alt);border-radius:10px;margin-bottom:1.2rem}
+.order-product img{width:64px;height:64px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff}
+.order-product-info{flex:1;min-width:0}
+.order-product-info h3{font-size:.95rem;margin-bottom:.15rem}
+.order-product-info .price{color:var(--primary);font-weight:700;font-family:var(--font-h);font-size:1rem}
+.order-form-section h3{font-size:.85rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;margin-bottom:.7rem;font-weight:700}
+.order-form-section input{
+  width:100%;padding:.75rem .9rem;border:1px solid var(--border);
+  border-radius:8px;font-family:var(--font-b);font-size:.9rem;
+  color:var(--text);outline:none;background:#fff;margin-bottom:.55rem;transition:.2s;
+}
+.order-form-section input:focus{border-color:var(--primary)}
+.order-form-section .btn-wa{margin-top:.4rem;font-size:.92rem;padding:1rem}
+.order-note{font-size:.75rem;color:var(--muted);margin-top:.7rem;line-height:1.5;text-align:center}
+
+/* Settings modal */
+.settings-box{max-width:540px}
+.admin-header-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:1rem;padding-bottom:.8rem;border-bottom:1px solid var(--border)}
+.admin-header-row h2{margin:0;font-size:1.1rem;padding-right:0}
 .settings-box h3{
-  font-size:.88rem;margin:1.2rem 0 .6rem;color:var(--cyan);
-  font-family:var(--font-b);font-weight:700;text-transform:uppercase;letter-spacing:.08em;
+  font-size:.85rem;margin:1.3rem 0 .7rem;color:var(--text);
+  font-family:var(--font-b);font-weight:700;text-transform:uppercase;letter-spacing:.06em;
 }
 .settings-box input[type="text"],
 .settings-box input[type="number"],
 .settings-box input[type="password"],
 .settings-box input[type="file"]{
-  width:100%;padding:.7rem .85rem;border-radius:9px;border:1px solid var(--line2);
-  background:rgba(255,255,255,.045);color:var(--txt);font-family:var(--font-b);
-  font-size:.88rem;outline:none;margin-bottom:.55rem;
-  transition:border-color .2s,background .2s;
+  width:100%;padding:.7rem .85rem;border-radius:8px;border:1px solid var(--border);
+  background:#fff;color:var(--text);font-family:var(--font-b);
+  font-size:.88rem;outline:none;margin-bottom:.55rem;transition:.2s;
 }
-.settings-box input[type="text"]:focus,
-.settings-box input[type="number"]:focus,
-.settings-box input[type="password"]:focus{
-  border-color:rgba(34,211,238,.7);background:rgba(34,211,238,.05);
+.settings-box input:focus{border-color:var(--primary)}
+.settings-box input[type="file"]{padding:.55rem;font-size:.82rem;cursor:pointer}
+.toggle-row{
+  display:flex;align-items:center;gap:.6rem;padding:.6rem .8rem;
+  background:var(--bg-alt);border-radius:8px;margin-bottom:.55rem;cursor:pointer;
+  font-size:.88rem;font-weight:500;
 }
-.settings-box input[type="file"]{
-  padding:.5rem;color:var(--muted);font-size:.82rem;cursor:pointer;
-}
-#adminProductsList{display:grid;gap:.7rem;margin-top:.5rem}
-#adminProductsList .admin-product{
+.toggle-row input[type="checkbox"]{width:18px;height:18px;cursor:pointer;accent-color:var(--primary)}
+#adminProductsList{display:grid;gap:.65rem;margin-top:.5rem}
+.admin-product{
   display:flex;gap:.8rem;align-items:center;
-  background:rgba(255,255,255,.03);border:1px solid var(--line);
-  border-radius:10px;padding:.7rem;
+  background:var(--bg-alt);border:1px solid var(--border);border-radius:10px;padding:.7rem;
 }
-#adminProductsList .admin-product img{
-  width:54px;height:54px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#1a2438;
+.admin-product img{width:52px;height:52px;object-fit:cover;border-radius:8px;flex-shrink:0;background:#fff}
+.admin-product-info{flex:1;min-width:0}
+.admin-product-info b{font-size:.88rem;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;margin-bottom:.15rem}
+.admin-product-info small{font-size:.78rem;color:var(--primary);font-weight:600;display:block;margin-bottom:.25rem}
+.mini-badge{display:inline-block;font-size:.68rem;font-weight:700;padding:.15rem .5rem;border-radius:5px}
+.mini-badge.available{background:#e8f5e9;color:#2d6a3e}
+.mini-badge.pickup{background:#fff3e0;color:#b86a1a}
+.admin-product .actions{display:flex;gap:.3rem;flex-shrink:0}
+.admin-product .actions button{
+  width:34px;height:34px;border-radius:8px;border:none;cursor:pointer;
+  font-size:.9rem;display:grid;place-items:center;transition:.2s;
 }
-#adminProductsList .admin-product-info{flex:1;min-width:0}
-#adminProductsList .admin-product-info b{
-  font-size:.9rem;display:block;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
-}
-#adminProductsList .admin-product-info small{font-size:.78rem;color:var(--cyan);font-weight:600}
-#adminProductsList .admin-product .actions{display:flex;gap:.4rem;flex-shrink:0}
-#adminProductsList .admin-product .actions button{
-  border:none;border-radius:7px;padding:.4rem .65rem;cursor:pointer;
-  font-size:.78rem;font-weight:600;font-family:var(--font-b);transition:.2s;
-}
-#adminProductsList .admin-product .actions .btn-edit{
-  background:rgba(34,211,238,.15);color:var(--cyan);border:1px solid rgba(34,211,238,.35);
-}
-#adminProductsList .admin-product .actions .btn-edit:hover{background:rgba(34,211,238,.25)}
-#adminProductsList .admin-product .actions .btn-del{
-  background:rgba(255,71,87,.15);color:#ff4757;border:1px solid rgba(255,71,87,.4);
-}
-#adminProductsList .admin-product .actions .btn-del:hover{background:rgba(255,71,87,.25)}
+.btn-edit{background:#e3f2fd;color:#1565c0}
+.btn-edit:hover{background:#bbdefb}
+.btn-toggle{background:#f3e5f5;color:#7b1fa2}
+.btn-toggle:hover{background:#e1bee7}
+.btn-del{background:#ffebee;color:#b83a2e}
+.btn-del:hover{background:#ffcdd2}
 .settings-empty{
   text-align:center;padding:1.5rem;color:var(--muted);font-size:.85rem;
-  background:rgba(255,255,255,.02);border:1px dashed var(--line2);border-radius:10px;
-}
-.footer-admin-link{
-  background:none;border:none;color:var(--muted);cursor:pointer;
-  font-size:.72rem;padding:0;font-family:var(--font-b);margin-top:.6rem;
-  display:inline-flex;align-items:center;gap:.3rem;transition:color .2s;
-}
-.footer-admin-link:hover{color:var(--cyan)}
-
-/* ===== JARVIS PORTAL LINK UNDER VIDEO ===== */
-.jarvis-portal-link{
-  display:flex;align-items:center;justify-content:center;gap:.5rem;
-  margin:0 .9rem .9rem;
-  padding:.75rem 1.2rem;
-  border-radius:10px;
-  background:var(--grad);
-  color:#03060d;
-  font-weight:700;
-  font-size:.85rem;
-  font-family:var(--font-b);
-  text-decoration:none;
-  transition:transform .2s,box-shadow .2s;
-  box-shadow:0 8px 20px -8px rgba(34,211,238,.7);
-}
-.jarvis-portal-link:hover{
-  transform:translateY(-2px);
-  box-shadow:0 12px 26px -8px rgba(34,211,238,.9);
+  background:var(--bg-alt);border:1px dashed var(--border-strong);border-radius:8px;
 }
 
-/* ===== HERO VIDEO CARD (Dave's Ad) ===== */
-.hero-video-card{
-  background:linear-gradient(160deg,var(--card),var(--bg2));
-  border:1px solid var(--line2);
-  border-radius:22px;
-  padding:1rem;
-  box-shadow:0 24px 60px -18px rgba(0,0,0,.75);
-  position:relative;
-  overflow:hidden;
-}
-.hero-video-card::before{
-  content:"";position:absolute;inset:-40% -40% auto auto;width:280px;height:280px;
-  background:radial-gradient(circle,rgba(34,211,238,.28),transparent 68%);
-  filter:blur(8px);pointer-events:none;
-}
-.hero-video-label{
-  display:flex;align-items:center;gap:.55rem;
-  font-size:.7rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
-  color:var(--muted);margin-bottom:.75rem;position:relative;
-}
-.hero-video-label .dot{
-  width:8px;height:8px;border-radius:50%;background:var(--cyan);
-  box-shadow:0 0 10px var(--cyan);
-  animation:heroPulse 2.2s infinite;
-}
-@keyframes heroPulse{0%,100%{opacity:1}50%{opacity:.35}}
-.hero-video-card video{
-  width:100%;
-  border-radius:16px;
-  display:block;
-  background:#000;
-  max-height:520px;
-  object-fit:contain;
-  position:relative;
-  border:1px solid var(--line);
-}
-.hero-video-caption{
-  margin-top:.75rem;
-  font-size:.8rem;
-  color:var(--muted);
-  text-align:center;
-  position:relative;
-}
+/* Loader */
+#loader{position:fixed;inset:0;background:var(--bg);z-index:9999;display:grid;place-items:center;gap:1rem;text-align:center;color:var(--muted)}
+#loader.hidden{display:none}
+.loader-ring{width:44px;height:44px;border:3px solid var(--border);border-top-color:var(--primary);border-radius:50%;animation:spin .9s linear infinite;margin:0 auto}
+@keyframes spin{to{transform:rotate(360deg)}}
 
-/* ===== HERO STATS ===== */
-.hero-stats{
-  display:grid;
-  grid-template-columns:repeat(4,1fr);
-  gap:1rem;
-  margin-top:2rem;
-  padding-top:1.5rem;
-  border-top:1px solid var(--line);
-}
-.stat b{
-  display:block;
-  font-family:var(--font-h);
-  font-size:1.05rem;
-  color:#fff;
-  margin-bottom:.15rem;
-}
-.stat span{
-  font-size:.68rem;
-  color:var(--muted);
-  text-transform:uppercase;
-  letter-spacing:.08em;
+/* Responsive */
+@media(max-width:900px){
+  .hero-grid,.contact-grid,.footer-grid{grid-template-columns:1fr}
+  .nav-links{
+    display:none;position:fixed;top:66px;left:0;right:0;
+    background:var(--bg);padding:1rem 22px 1.5rem;
+    border-bottom:1px solid var(--border);flex-direction:column;gap:0;
+    box-shadow:0 10px 20px rgba(42,36,32,.08);z-index:800;
+  }
+  .nav-links.open{display:flex}
+  .nav-links a{padding:.9rem 0;border-bottom:1px solid var(--border);font-size:.95rem}
+  .burger{display:grid}
+  .hero{padding:2rem 0 2.5rem}
 }
 @media(max-width:600px){
-  .hero-stats{grid-template-columns:repeat(2,1fr)}
-  .hero-video-card video{max-height:400px}
-}
-
-/* ===== PAYMENT FLOW SECTION ===== */
-.flow-tabs{
-  display:flex;gap:.5rem;margin-bottom:1.5rem;flex-wrap:wrap;
-  justify-content:center;
-}
-.flow-tabs button{
-  padding:.7rem 1.4rem;border-radius:999px;border:1px solid var(--line2);
-  background:transparent;color:var(--muted);cursor:pointer;
-  font-family:var(--font-b);font-weight:600;font-size:.9rem;
-  transition:.2s;
-}
-.flow-tabs button.active{
-  background:var(--grad);color:#03060d;border-color:transparent;
-}
-.flow-tabs button:hover:not(.active){
-  color:var(--cyan);border-color:rgba(34,211,238,.4);
-}
-
-.flow-content{display:none}
-.flow-content.active{display:block}
-
-.flow-steps{
-  display:grid;gap:1rem;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  margin-bottom:1.8rem;
-}
-.flow-step{
-  background:linear-gradient(165deg,var(--card),var(--bg2));
-  border:1px solid var(--line);border-radius:14px;padding:1.3rem;
-  position:relative;transition:transform .25s,border-color .25s;
-}
-.flow-step:hover{
-  transform:translateY(-3px);
-  border-color:rgba(34,211,238,.4);
-}
-.flow-step-num{
-  width:36px;height:36px;border-radius:50%;
-  background:var(--grad);color:#03060d;
-  display:grid;place-items:center;
-  font-family:var(--font-h);font-weight:700;font-size:.9rem;
-  margin-bottom:.9rem;
-  box-shadow:0 6px 16px -6px rgba(34,211,238,.75);
-}
-.flow-step h4{
-  font-family:var(--font-h);font-size:.95rem;margin-bottom:.4rem;
-  color:#fff;
-}
-.flow-step p{
-  font-size:.82rem;line-height:1.55;color:var(--muted);
-}
-.flow-step .flow-badge{
-  display:inline-block;margin-top:.6rem;
-  font-size:.68rem;font-weight:700;letter-spacing:.08em;
-  text-transform:uppercase;padding:.25rem .6rem;
-  border-radius:999px;
-  background:rgba(34,211,238,.12);
-  border:1px solid rgba(34,211,238,.3);
-  color:var(--cyan);
-}
-.flow-step .flow-badge.warn{
-  background:rgba(255,193,7,.12);
-  border-color:rgba(255,193,7,.4);
-  color:#ffc107;
-}
-.flow-step .flow-badge.success{
-  background:rgba(76,175,80,.15);
-  border-color:rgba(76,175,80,.4);
-  color:#7ee787;
-}
-
-/* ===== PAYMENT INFO BOX ===== */
-.payment-info-box{
-  background:linear-gradient(160deg,#0d1a2c,#060a14);
-  border:1px solid rgba(34,211,238,.3);
-  border-radius:20px;padding:1.8rem;margin-bottom:1.5rem;
-  box-shadow:0 20px 50px -20px rgba(34,211,238,.35);
-  position:relative;overflow:hidden;
-}
-.payment-info-box::before{
-  content:"";position:absolute;inset:-40% -30% auto auto;
-  width:320px;height:320px;
-  background:radial-gradient(circle,rgba(124,92,255,.22),transparent 70%);
-  filter:blur(10px);pointer-events:none;
-}
-.payment-info-box h3{
-  font-family:var(--font-h);font-size:1.15rem;
-  margin-bottom:1.2rem;position:relative;color:#fff;
-}
-.pay-cards{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));
-  gap:.9rem;position:relative;
-}
-.pay-card{
-  background:rgba(255,255,255,.04);
-  border:1px solid var(--line2);
-  border-radius:12px;padding:1.1rem;
-  display:flex;flex-direction:column;gap:.5rem;
-}
-.pay-card .pay-icon{font-size:1.6rem}
-.pay-card h4{
-  font-family:var(--font-h);font-size:.9rem;
-  text-transform:uppercase;letter-spacing:.08em;
-  color:var(--muted);
-}
-.pay-card .pay-number{
-  font-family:var(--font-h);font-weight:700;
-  font-size:1.15rem;color:var(--cyan);
-  word-break:break-all;
-}
-.pay-card .pay-copy-btn{
-  margin-top:auto;
-  padding:.5rem .8rem;border-radius:8px;
-  background:rgba(34,211,238,.12);
-  border:1px solid rgba(34,211,238,.35);
-  color:var(--cyan);cursor:pointer;
-  font-family:var(--font-b);font-size:.78rem;font-weight:600;
-  transition:.2s;
-}
-.pay-card .pay-copy-btn:hover{background:rgba(34,211,238,.25)}
-.pay-card .pay-copy-btn.copied{
-  background:rgba(76,175,80,.2);
-  border-color:rgba(76,175,80,.5);
-  color:#7ee787;
-}
-
-/* ===== SECURITY WARNING ===== */
-.security-warning{
-  background:rgba(255,71,87,.08);
-  border:1px solid rgba(255,71,87,.35);
-  border-radius:14px;padding:1.2rem 1.4rem;margin-top:1.2rem;
-}
-.security-warning h4{
-  color:#ff8a95;font-family:var(--font-h);font-size:.95rem;
-  margin-bottom:.6rem;display:flex;align-items:center;gap:.5rem;
-}
-.security-warning ul{
-  display:grid;gap:.35rem;
-  padding-left:1.1rem;
-}
-.security-warning li{
-  color:#d8c2c2;font-size:.82rem;line-height:1.5;
-}
-
-/* ===== WHATSAPP PAYMENT PROOF ===== */
-.payment-proof-btn{
-  display:flex;align-items:center;justify-content:center;gap:.6rem;
-  width:100%;
-  padding:1rem 1.2rem;margin-top:1.2rem;
-  border-radius:12px;
-  background:#25D366;color:#04250f;
-  font-family:var(--font-b);font-weight:700;font-size:.92rem;
-  text-decoration:none;
-  border:1px solid rgba(37,211,102,.6);
-  box-shadow:0 12px 28px -12px rgba(37,211,102,.7);
-  transition:transform .2s,box-shadow .2s;
-}
-.payment-proof-btn:hover{
-  transform:translateY(-2px);
-  box-shadow:0 18px 34px -12px rgba(37,211,102,.9);
-}
-.payment-proof-btn svg{width:22px;height:22px}
-
-/* ===== TIMELINE ===== */
-.flow-timeline{
-  display:flex;align-items:center;justify-content:center;
-  gap:.4rem;flex-wrap:wrap;
-  margin:1.5rem 0;padding:1rem;
-  background:rgba(34,211,238,.05);
-  border:1px solid rgba(34,211,238,.2);
-  border-radius:14px;
-}
-.flow-timeline .tl-step{
-  font-family:var(--font-h);font-size:.75rem;font-weight:600;
-  text-transform:uppercase;letter-spacing:.05em;
-  padding:.4rem .8rem;border-radius:999px;
-  background:rgba(5,7,13,.6);color:#dff4fb;
-  border:1px solid var(--line2);
-}
-.flow-timeline .tl-arrow{color:var(--cyan);font-weight:700}
-
-@media (max-width:600px){
-  .flow-steps{grid-template-columns:1fr}
-  .pay-cards{grid-template-columns:1fr}
-  .flow-timeline .tl-step{font-size:.68rem;padding:.35rem .65rem}
+  .section{padding:2.5rem 0}
+  .footer-bottom{flex-direction:column;text-align:center}
+  .hero-video-card video{max-height:360px}
+  .modal-box{padding:1.5rem;border-radius:14px}
 }
 </style>
 </head>
@@ -374,77 +372,55 @@
       <span class="logo-mark">👟</span>
       <span>TIKA<small>MARCHE</small></span>
     </a>
-
     <nav class="nav-links" id="navLinks">
       <a href="#soulye">Soulye</a>
-      <a href="#kijan">Kijan sa mache</a>
+      <a href="#kijan">Kijan pou achte</a>
       <a href="#peman">Peman</a>
       <a href="#gesner">Gesner Deslandes</a>
       <a href="#kontak">Kontak</a>
     </nav>
-
     <div class="nav-actions">
-      <button id="settingsBtn" class="btn-cart" aria-label="Settings" title="Settings" style="padding:.55rem .8rem">⚙️</button>
-      <button id="cartBtn" class="btn-cart" aria-label="Panye">
-        🛒 <span id="cartCount">0</span>
-      </button>
-      <button id="authBtn" class="btn btn-outline">Konekte</button>
+      <button id="settingsBtn" class="btn-settings" aria-label="Settings" title="Settings">⚙️</button>
       <button class="burger" id="burger"><span></span></button>
     </div>
   </div>
 </header>
 
-<!-- ================= HERO WITH DAVE'S VIDEO ================= -->
+<!-- HERO -->
 <section class="hero" id="akèy">
   <div class="wrap hero-grid">
     <div>
-      <span class="pill">🇭🇹 Pèman MonCash & NatCash</span>
-      <h1>Soulye ou vle.<br><span class="grad">Livrez lakay ou.</span></h1>
-      <p>TIKA MARCHE se boutik soulye ou — kalite, pri ki jis, livrezon nan tout peyi a. Peye ak MonCash oswa NatCash.</p>
+      <span class="pill">🇭🇹 Pèman MonCash & NatCash · Livrezon oswa Pase pran</span>
+      <h1>Soulye ou vle.<br><span class="grad">Kontakte Tika dirèkteman.</span></h1>
+      <p class="hero-sub">TIKA MARCHE se boutik soulye ou — kalite, pri ki jis, tout Ayiti. Chwazi pwodwi a, ranpli enfòmasyon livrezon ou, epi klike WhatsApp pou w pale ak Tika dirèkteman.</p>
       <div class="hero-actions">
         <a href="#soulye" class="btn btn-primary">Gade Soulye Yo →</a>
         <a href="#kijan" class="btn btn-ghost">Kijan pou achte</a>
       </div>
-
-      <div class="hero-stats">
-        <div class="stat"><b>MonCash</b><span>Peman</span></div>
-        <div class="stat"><b>NatCash</b><span>Peman</span></div>
-        <div class="stat"><b>Livrezon</b><span>Tout Ayiti</span></div>
-        <div class="stat"><b>Dave</b><span>Prezantasyon</span></div>
-      </div>
     </div>
-
     <div class="hero-visual">
       <div class="hero-video-card">
         <div class="hero-video-label">
           <span class="dot"></span>
-          <span>▶️ Gade entwodiksyon an</span>
+          <span>Gade entwodiksyon an</span>
         </div>
-        <video
-          controls
-          playsinline
-          preload="metadata"
-          controlsList="nodownload"
-        >
-          <source
-            src="https://rawcdn.githack.com/Deslandes1/TIKA-MARCHE-Soulye-an-liy-Ha-ti-/399fbe6b61214a4070363e80207988e7a5ae2d89/DAVESHOESVIDEO2026AD.mp4"
-            type="video/mp4"
-          />
+        <video controls playsinline preload="metadata" controlsList="nodownload">
+          <source src="https://rawcdn.githack.com/Deslandes1/TIKA-MARCHE-Soulye-an-liy-Ha-ti-/399fbe6b61214a4070363e80207988e7a5ae2d89/DAVESHOESVIDEO2026AD.mp4" type="video/mp4" />
           Navigator ou pa sipòte videyo a.
         </video>
         <p class="hero-video-caption">Dave ap eksplike w kijan pou achte sou TIKA MARCHE 🎬</p>
       </div>
-      <!-- Hidden featured product reference keeps app.js happy -->
-      <div id="featuredProduct" style="display:none"></div>
     </div>
   </div>
 </section>
 
+<!-- PRODUCTS -->
 <section class="section" id="soulye">
   <div class="wrap">
     <div class="section-head">
-      <h2>Tout <span class="grad">Soulye</span> Nou</h2>
-      <p>Chwazi sa ou renmen. Pri a se sa ou wè.</p>
+      <span class="section-title-line"></span>
+      <h2>Soulye ki <span class="grad">disponib</span></h2>
+      <p>Klike "Achte Kounye a" — w ap ranpli enfòmasyon w epi w ap kontakte Tika dirèkteman.</p>
     </div>
     <div id="productsGrid" class="products-grid">
       <p class="loading-text">Ap chaje pwodwi…</p>
@@ -452,203 +428,90 @@
   </div>
 </section>
 
-<section class="section" id="kijan">
+<!-- HOW TO BUY -->
+<section class="section" id="kijan" style="background:var(--bg-alt)">
   <div class="wrap">
-    <h2>Kijan pou <span class="grad">achte</span></h2>
+    <div class="section-head">
+      <span class="section-title-line"></span>
+      <h2>Kijan pou <span class="grad">achte</span></h2>
+      <p>Senp — pa gen kont pou kreye, pa gen panye konplike. Jis 4 etap.</p>
+    </div>
     <div class="steps">
-      <div class="step"><b>1</b><h3>Chwazi</h3><p>Klike sou soulye ou vle a epi ajoute nan panye.</p></div>
-      <div class="step"><b>2</b><h3>Ranpli Adrès</h3><p>Mete non, telefòn, vil, zòn ak adrès egzak ou.</p></div>
-      <div class="step"><b>3</b><h3>Peye</h3><p>Peye ak MonCash oswa NatCash. Ou ka voye lajan nan "+509 43 34 5491".</p></div>
-      <div class="step"><b>4</b><h3>Resevwa</h3><p>Nou kontakte w pou livrezon an. Mèsi paske ou chwazi TIKA MARCHE!</p></div>
+      <div class="step">
+        <b>1</b>
+        <h3>Chwazi pwodwi</h3>
+        <p>Gade soulye yo epi klike "Achte Kounye a" sou sa ou renmen.</p>
+      </div>
+      <div class="step">
+        <b>2</b>
+        <h3>Ranpli enfòmasyon</h3>
+        <p>Mete non w, telefòn w, vil ou ak zòn ou. Sa ede Tika konnen kibo w ye.</p>
+      </div>
+      <div class="step">
+        <b>3</b>
+        <h3>Klike WhatsApp</h3>
+        <p>Yon mesaj otomatik ap voye bay Tika ak tout enfòmasyon w. Li ap reponn ou vit.</p>
+      </div>
+      <div class="step">
+        <b>4</b>
+        <h3>Peye & Resevwa</h3>
+        <p>Peye ak MonCash oswa NatCash. Tika ap livre w oswa w ap pase pran l.</p>
+      </div>
     </div>
   </div>
 </section>
 
-<!-- ============ PAYMENT FLOW EXPLAINED ============ -->
-<section class="section" id="peman">
+<!-- PAYMENT INFO -->
+<section class="section payment-section" id="peman">
   <div class="wrap">
-    <h2>Kijan <span class="grad">Peman</span> an Mache</h2>
-    <p class="section-sub">Tout etap yo klè — soti nan klike sou "Achte" rive nan resevwa soulye a lakay ou.</p>
-
-    <div class="flow-tabs">
-      <button data-flow="client" class="active">👤 Kliyan (Achtè)</button>
-      <button data-flow="seller">👟 Tika (Vandè)</button>
+    <div class="section-head">
+      <span class="section-title-line"></span>
+      <h2>Nimewo <span class="grad">Peman Ofisyèl</span></h2>
+      <p>Sèl nimewo TIKA MARCHE — pa gen lòt. Kopye epi peye san danje.</p>
     </div>
 
-    <div id="flowClient" class="flow-content active">
-      <div class="flow-timeline">
-        <span class="tl-step">Chwazi</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Konekte</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Adrès</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Peye</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Prèv</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Livrezon</span>
+    <div class="payment-cards">
+      <div class="payment-card">
+        <span class="pay-icon">📱</span>
+        <h4>MonCash</h4>
+        <div class="pay-number">+509 43 34 5491</div>
+        <button class="pay-copy-btn" data-copy="+50943345491">Kopye nimewo a</button>
       </div>
-
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="flow-step-num">1</div>
-          <h4>Chwazi soulye ou</h4>
-          <p>Gade nan seksyon "Soulye" a epi klike "➕ Ajoute nan Panye" sou sa ou renmen.</p>
-          <span class="flow-badge">Kòmanse</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">2</div>
-          <h4>Kreye kont / Konekte</h4>
-          <p>Klike "Konekte" anlè a. Si w pa gen kont, klike "Kreye Kont" epi mete non, email, ak modpas.</p>
-          <span class="flow-badge warn">Obligatwa</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">3</div>
-          <h4>Ranpli adrès livrezon</h4>
-          <p>Nan panye a, antre non konplè, telefòn, vil (ex: P-au-P), zòn (ex: Delmas 33), ak adrès egzak (ri, nimewo, repè).</p>
-          <span class="flow-badge">Enpòtan</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">4</div>
-          <h4>Chwazi metòd peman</h4>
-          <p>Chwazi <b>MonCash</b> oswa <b>NatCash</b>. W ap wè nimewo a parèt — se <b>+509 43 34 5491</b>.</p>
-          <span class="flow-badge">MonCash / NatCash</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">5</div>
-          <h4>Voye lajan an</h4>
-          <p>Louvi app MonCash oswa NatCash ou, chwazi "Voye Lajan", epi voye montan total la nan <b>+509 43 34 5491</b>.</p>
-          <span class="flow-badge warn">Sonje nimewo a</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">6</div>
-          <h4>Voye prèv peman</h4>
-          <p>Fè yon <b>screenshot</b> oswa <b>copye mesaj konfimasyon</b> MonCash/NatCash la, epi voye l sou WhatsApp Tika nan menm nimewo a.</p>
-          <span class="flow-badge">Screenshot</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">7</div>
-          <h4>Tika verifye</h4>
-          <p>Tika ap tcheke tranzaksyon an (jeneralman nan 1–2 èdtan). W ap resevwa yon mesaj konfimasyon sou WhatsApp.</p>
-          <span class="flow-badge">1–2 èdtan</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">8</div>
-          <h4>Resevwa soulye a</h4>
-          <p>Tika ap prepare epi livre pwodwi a nan adrès ou. Ou peye res li lè w resevwa l (si sa te dakò).</p>
-          <span class="flow-badge success">Fini ✓</span>
-        </div>
+      <div class="payment-card">
+        <span class="pay-icon">💚</span>
+        <h4>NatCash</h4>
+        <div class="pay-number">+509 43 34 5491</div>
+        <button class="pay-copy-btn" data-copy="+50943345491">Kopye nimewo a</button>
+      </div>
+      <div class="payment-card">
+        <span class="pay-icon">🌍</span>
+        <h4>Send Wave / TapTap Send</h4>
+        <div class="pay-number">+509 43 34 5491</div>
+        <button class="pay-copy-btn" data-copy="+50943345491">Kopye nimewo a</button>
       </div>
     </div>
 
-    <div id="flowSeller" class="flow-content">
-      <div class="flow-timeline">
-        <span class="tl-step">Kòmand</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Verifye</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Konfime</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Prepare</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Livrezon</span><span class="tl-arrow">→</span>
-        <span class="tl-step">Fèmë</span>
-      </div>
-
-      <div class="flow-steps">
-        <div class="flow-step">
-          <div class="flow-step-num">1</div>
-          <h4>Resevwa kòmand lan</h4>
-          <p>Lè yon kliyan konfime yon kòmand sou sit la, li parèt nan <b>⚙️ Settings</b> epi w ap resevwa yon notifikasyon.</p>
-          <span class="flow-badge">Notifikasyon</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">2</div>
-          <h4>Verifye peman an</h4>
-          <p>Louvri app MonCash oswa NatCash ou. Verifye si montan an rive nan <b>+509 43 34 5491</b> epi si non moun ki voye a matche ak non kliyan an.</p>
-          <span class="flow-badge warn">Verifye byen</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">3</div>
-          <h4>Konfime ak kliyan an</h4>
-          <p>Rele oswa voye yon mesaj WhatsApp pou konfime adrès livrezon an ak kliyan an. Mande si li vle yon lè espesifik pou livrezon.</p>
-          <span class="flow-badge">Apèl / WhatsApp</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">4</div>
-          <h4>Prepare pwodwi a</h4>
-          <p>Chwazi bon soulye a (bon gwosè, bon koulè), netwaye l si nesesè, epi mete l nan yon sak pwòp pou livrezon.</p>
-          <span class="flow-badge">Bon jan kalite</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">5</div>
-          <h4>Livre soulye a</h4>
-          <p>Ale nan adrès kliyan an oswa itilize yon livrè ou fè konfyans. Si w pa ka ale, voye yon mesaj pou fè kliyan an konnen lè w ap pase.</p>
-          <span class="flow-badge">Livrezon</span>
-        </div>
-
-        <div class="flow-step">
-          <div class="flow-step-num">6</div>
-          <h4>Fèmen kòmand lan</h4>
-          <p>Mande kliyan an konfime li resevwa pwodwi a. Nan Settings, make kòmand lan kòm "livre". Mande yon ti kòmantè sou WhatsApp pou amelyore sèvis la.</p>
-          <span class="flow-badge success">Fini ✓</span>
-        </div>
-      </div>
+    <div class="security-warning">
+      <h4>⚠️ Sekirite — Li Sa Byen</h4>
+      <ul>
+        <li><b>Pa janm</b> pataje PIN MonCash/NatCash ou ak pèsonn.</li>
+        <li><b>Pa janm</b> pataje kòd SMS/OTP ou — Tika pa janm mande w sa.</li>
+        <li>Sèl nimewo peman TIKA MARCHE se <b>+509 43 34 5491</b>. Si yon lòt nimewo kontakte w, se twonpe.</li>
+        <li>Konsève tout resi ak screenshot peman jouk ou fin resevwa soulye a.</li>
+        <li>Si w gen dout, rele Tika dirèkteman nan <a href="tel:+50943345491" style="color:var(--primary);font-weight:600">+509 43 34 5491</a>.</li>
+      </ul>
     </div>
-
-    <div class="payment-info-box">
-      <h3>💸 Nimewo Peman Ofisyèl</h3>
-      <div class="pay-cards">
-        <div class="pay-card">
-          <div class="pay-icon">📱</div>
-          <h4>MonCash</h4>
-          <div class="pay-number">+509 43 34 5491</div>
-          <button class="pay-copy-btn" data-copy="+50943345491">📋 Kopye nimewo a</button>
-        </div>
-
-        <div class="pay-card">
-          <div class="pay-icon">💚</div>
-          <h4>NatCash</h4>
-          <div class="pay-number">+509 43 34 5491</div>
-          <button class="pay-copy-btn" data-copy="+50943345491">📋 Kopye nimewo a</button>
-        </div>
-
-        <div class="pay-card">
-          <div class="pay-icon">🌍</div>
-          <h4>Send Wave / TapTap Send</h4>
-          <div class="pay-number">+509 43 34 5491</div>
-          <button class="pay-copy-btn" data-copy="+50943345491">📋 Kopye nimewo a</button>
-        </div>
-      </div>
-
-      <a href="https://wa.me/18132977570?text=Bonjou%20Tika%2C%20mwen%20voye%20pr%C3%A8v%20peman%20pou%20k%C3%B2mand%20mwen.%20Men%20screenshot%20lan%3A" target="_blank" rel="noopener" class="payment-proof-btn">
-        <svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm5.5 14.2c-.2.7-1.4 1.3-2 1.4-.5.1-1.2.1-1.9-.1a13.6 13.6 0 0 1-5.1-3.3 11 11 0 0 1-2.3-3.8c-.2-.7 0-1.3.3-1.7l.6-.7c.2-.2.4-.2.6-.2h.4c.2 0 .4 0 .6.4l.8 1.9c.1.2 0 .4-.1.6l-.4.5c-.1.2-.2.3 0 .6.4.7 1 1.4 1.6 1.9.6.5 1.2.8 1.7 1 .2.1.4 0 .5-.1l.6-.7c.2-.2.3-.2.5-.1l1.8.9c.2.1.4.2.4.3.1.2.1.7-.1 1.2Z"/></svg>
-        Voye Prèv Peman sou WhatsApp
-      </a>
-
-      <div class="security-warning">
-        <h4>⚠️ Sekirite — Li Sa Byen</h4>
-        <ul>
-          <li><b>Pa janm</b> pataje PIN MonCash/NatCash ou ak pèsonn.</li>
-          <li><b>Pa janm</b> pataje kòd SMS/OTP ou ak pèsonn — Tika pa janm mande w sa.</li>
-          <li>Sèl nimewo peman TIKA MARCHE se <b>+509 43 34 5491</b>. Si yon lòt nimewo kontakte w, se yon moun k ap eseye twonpe w.</li>
-          <li>Konsève tout resi ak screenshot peman ou jouk ou fin resevwa soulye a.</li>
-          <li>Si w gen dout, rele Tika dirèkteman nan <a href="tel:+50943345491" style="color:var(--cyan);font-weight:600">+509 43 34 5491</a> anvan ou voye lajan.</li>
-        </ul>
-      </div>
-    </div>
-
   </div>
 </section>
 
-<!-- ============ GESNER DESLANDES ============ -->
+<!-- GESNER -->
 <section class="section" id="gesner">
   <div class="wrap">
-    <h2>Kreye pa <span class="grad">Gesner Deslandes</span></h2>
-    <p class="section-sub">Enjenyè lojisyèl — AI-assisted developer.</p>
+    <div class="section-head">
+      <span class="section-title-line"></span>
+      <h2>Kreye pa <span class="grad">Gesner Deslandes</span></h2>
+      <p>Enjenyè lojisyèl — AI-assisted developer.</p>
+    </div>
 
     <div class="gesner-grid">
       <div class="video-card">
@@ -660,7 +523,6 @@
           Open JARVIS Portal →
         </a>
       </div>
-
       <div class="video-card">
         <video controls playsinline preload="metadata">
           <source src="https://rawcdn.githack.com/Deslandes1/PIPLIS-LLC-My-preferred-allocation-WEBSITE-2026/90668f31e708b9fc2314f8ea8664cc3a97fdbd2d/avatar_video.mp4%20(2).mp4" type="video/mp4" />
@@ -683,33 +545,34 @@
         <div><b>GlobalTechnology.com</b><small>Sit konpayi an</small></div>
       </a>
     </div>
-
     <p class="gesner-note">Kontakte l: <a href="mailto:deslandes78@gmail.com">deslandes78@gmail.com</a></p>
   </div>
 </section>
 
-<section class="section" id="kontak">
+<!-- CONTACT -->
+<section class="section" id="kontak" style="background:var(--bg-alt)">
   <div class="wrap">
     <div class="contact-grid">
       <div class="contact-card">
         <h2>Kontakte <span class="grad">TIKA</span></h2>
-        <p>Gen kesyon? Rele oswa voye yon mesaj.</p>
+        <p style="color:var(--muted);margin-bottom:1rem;font-size:.9rem">Gen kesyon? Rele oswa voye yon mesaj.</p>
         <div class="contact-line">
           <span>📞</span>
-          <div><small>Telefòn</small><a href="tel:+50943345491">+509 43 34 5491</a></div>
+          <div><small>Telefòn / WhatsApp</small><a href="tel:+50943345491">+509 43 34 5491</a></div>
         </div>
         <div class="contact-line">
           <span>💸</span>
-          <div><small>NatCash (Peman)</small><strong>+509 43 34 5491</strong></div>
+          <div><small>NatCash / MonCash</small><strong>+509 43 34 5491</strong></div>
         </div>
         <div class="contact-line">
           <span>🌍</span>
-          <div><small>Depi lòt peyi</small><strong>Send Wave / TapTap Send → +509 43 34 5491</strong></div>
+          <div><small>Dyaspora</small><strong>Send Wave / TapTap Send → +509 43 34 5491</strong></div>
         </div>
       </div>
 
       <div class="contact-card">
         <h2>Voye yon <span class="grad">mesaj</span></h2>
+        <p style="color:var(--muted);margin-bottom:1rem;font-size:.9rem">Pou kesyon jeneral — pa pou kòmand.</p>
         <form id="contactForm">
           <input type="text" name="name" placeholder="Non ou" required />
           <input type="tel" name="phone" placeholder="Telefòn ou" required />
@@ -728,12 +591,12 @@
       <div>
         <a href="#" class="logo"><span class="logo-mark">👟</span><span>TIKA<small>MARCHE</small></span></a>
         <p>Soulye kalite, pri jis, livrezon nan tout Ayiti. Peye ak MonCash oswa NatCash.</p>
-        <button class="footer-admin-link" onclick="document.getElementById('settingsBtn').click()">⚙️ Settings</button>
+        <button class="footer-admin-link" onclick="document.getElementById('settingsBtn').click()">⚙️ Settings Tika</button>
       </div>
       <div>
         <h5>Lyen</h5>
         <a href="#soulye">Soulye</a>
-        <a href="#kijan">Kijan sa mache</a>
+        <a href="#kijan">Kijan pou achte</a>
         <a href="#peman">Peman</a>
         <a href="#gesner">Gesner Deslandes</a>
       </div>
@@ -750,19 +613,44 @@
   </div>
 </footer>
 
-<!-- ================= SETTINGS / ADMIN MODAL ================= -->
+<!-- ===== ORDER MODAL ===== -->
+<div id="orderModal" class="modal">
+  <div class="modal-box">
+    <button class="modal-close" id="closeOrder">✕</button>
+    <h2>Achte Pwodwi</h2>
+    <div class="order-product">
+      <img id="orderProductImage" src="" alt="" />
+      <div class="order-product-info">
+        <h3 id="orderProductName">—</h3>
+        <div class="price" id="orderProductPrice">—</div>
+      </div>
+    </div>
+    <div id="orderDeliveryInfo" style="margin-bottom:1.2rem"></div>
+    <form id="orderForm" class="order-form-section">
+      <h3>Enfòmasyon pou Tika</h3>
+      <input type="text" name="name" placeholder="Non w" required />
+      <input type="tel" name="phone" placeholder="Telefòn w" required />
+      <input type="text" name="city" placeholder="Vil ou (ex: P-au-P, Cap-Haïtien)" required />
+      <input type="text" name="zone" placeholder="Zòn ou (ex: Delmas 33, Pétion-Ville)" required />
+      <button type="submit" class="btn btn-wa btn-block">📱 Kontakte Tika sou WhatsApp</button>
+      <p class="order-note">Lè w klike, WhatsApp ap louvri ak yon mesaj ki gen tout enfòmasyon w. Tika ap resevwa l epi l ap reponn ou.</p>
+      <div id="orderStatus" class="form-status"></div>
+    </form>
+  </div>
+</div>
+
+<!-- ===== SETTINGS / ADMIN MODAL ===== -->
 <div id="settingsModal" class="modal">
   <div class="modal-box settings-box">
     <button class="modal-close" id="closeSettings">✕</button>
 
     <div id="adminLoginSection">
       <h2 style="margin-bottom:.3rem">⚙️ Settings — TIKA MARCHE</h2>
-      <p style="font-size:.88rem;margin-bottom:1.2rem">Antre kòm Tika pou jere pwodwi yo.</p>
-
+      <p style="font-size:.88rem;color:var(--muted);margin-bottom:1.2rem">Antre kòm Tika pou jere pwodwi yo.</p>
       <form id="adminLoginForm">
-        <label style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;margin-bottom:.3rem">Non</label>
+        <label style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:.3rem;font-weight:600">Non</label>
         <input type="text" name="name" placeholder="Non ou" autocomplete="username" required />
-        <label style="font-size:.75rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted);display:block;margin-bottom:.3rem">Modpas</label>
+        <label style="font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;color:var(--muted);display:block;margin-bottom:.3rem;font-weight:600">Modpas</label>
         <input type="password" name="password" placeholder="Modpas ou" autocomplete="current-password" required />
         <button type="submit" class="btn btn-primary btn-block" style="margin-top:.6rem">Antre</button>
         <div id="adminLoginStatus" class="form-status"></div>
@@ -772,16 +660,21 @@
     <div id="adminPanelSection" style="display:none">
       <div class="admin-header-row">
         <h2>👟 Admin — TIKA</h2>
-        <button id="adminLogoutBtn" class="btn btn-outline" style="padding:.5rem 1rem;font-size:.8rem">Soti</button>
+        <button id="adminLogoutBtn" class="btn btn-ghost" style="padding:.45rem .9rem;font-size:.8rem">Soti</button>
       </div>
 
-      <h3>➕ Ajoute yon pwodwi</h3>
+      <h3>➕ Ajoute yon nouvo pwodwi</h3>
       <form id="addProductForm">
         <input type="text" name="name" placeholder="Non pwodwi (ex: Nike Air Max)" required />
         <input type="number" name="price" placeholder="Pri an HTG (ex: 4500)" min="0" step="1" required />
         <input type="text" name="description" placeholder="Deskripsyon (ex: Soulye gason, nwa, gwosè 40-45)" required />
         <input type="file" name="image" accept="image/*" required />
-        <button type="submit" class="btn btn-primary btn-block" style="margin-top:.5rem">Ajoute Pwodwi</button>
+        <label class="toggle-row">
+          <input type="checkbox" name="deliveryAvailable" checked />
+          <span>✅ Livrezon disponib</span>
+        </label>
+        <input type="text" name="pickupLocation" placeholder="Kibo pou pase pran l (si pa gen livrezon)" />
+        <button type="submit" class="btn btn-primary btn-block" style="margin-top:.4rem">Ajoute Pwodwi</button>
         <div id="addProductStatus" class="form-status"></div>
       </form>
 
@@ -794,70 +687,9 @@
   </div>
 </div>
 
-<!-- ================= CART MODAL ================= -->
-<div id="cartModal" class="modal">
-  <div class="modal-box">
-    <button class="modal-close" id="closeCart">✕</button>
-    <h2>Panye ou</h2>
-    <div id="cartItems"></div>
-    <div class="cart-total"><b>Total:</b> <span id="cartTotal">0 HTG</span></div>
-    <form id="checkoutForm">
-      <h3>Adrès Livrezon</h3>
-      <div class="form-grid">
-        <input type="text" name="fullName" placeholder="Non konplè" required />
-        <input type="tel" name="phone" placeholder="Telefòn" required />
-        <input type="text" name="city" placeholder="Vil (ex: P-au-P, Cap-Haïtien…)" required />
-        <input type="text" name="zone" placeholder="Zòn / Katye" required />
-        <input type="text" name="address" placeholder="Adrès egzak (ri, nimewo, repè)" class="full" required />
-      </div>
-      <h3>Metòd Peman</h3>
-      <label class="pay-option"><input type="radio" name="payment" value="moncash" required /> MonCash (+509 43 34 5491)</label>
-      <label class="pay-option"><input type="radio" name="payment" value="natcash" /> NatCash (+509 43 34 5491)</label>
-      <p class="pay-note">Apre ou fin peye, nou pral verifye tranzaksyon an epi kontakte w pou livrezon.</p>
-      <button type="submit" class="btn btn-primary btn-block">Konfime Kòmand</button>
-      <div id="checkoutStatus" class="form-status"></div>
-    </form>
-  </div>
-</div>
-
-<!-- ================= AUTH MODAL ================= -->
-<div id="authModal" class="modal">
-  <div class="modal-box auth-box">
-    <button class="modal-close" id="closeAuth">✕</button>
-    <div class="auth-tabs">
-      <button data-tab="login" class="active">Konekte</button>
-      <button data-tab="signup">Kreye Kont</button>
-    </div>
-    <form id="loginForm" class="auth-form active">
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="password" name="password" placeholder="Modpas" required />
-      <button type="submit" class="btn btn-primary btn-block">Konekte</button>
-      <div class="form-status" id="loginStatus"></div>
-    </form>
-    <form id="signupForm" class="auth-form">
-      <input type="text" name="name" placeholder="Non ou" required />
-      <input type="email" name="email" placeholder="Email" required />
-      <input type="password" name="password" placeholder="Modpas (min 6 karaktè)" required />
-      <button type="submit" class="btn btn-primary btn-block">Kreye Kont</button>
-      <div class="form-status" id="signupStatus"></div>
-    </form>
-  </div>
-</div>
-
-<!-- ===== INLINE SCRIPT: FLOW TABS + COPY ===== -->
 <script>
 (function() {
-  var flowBtns = document.querySelectorAll('.flow-tabs button');
-  flowBtns.forEach(function(btn) {
-    btn.addEventListener('click', function() {
-      var target = btn.dataset.flow;
-      flowBtns.forEach(function(b) { b.classList.toggle('active', b === btn); });
-      document.querySelectorAll('.flow-content').forEach(function(c) {
-        c.classList.toggle('active', c.id === 'flow' + target.charAt(0).toUpperCase() + target.slice(1));
-      });
-    });
-  });
-
+  // Copy buttons
   document.querySelectorAll('.pay-copy-btn').forEach(function(btn) {
     btn.addEventListener('click', function() {
       var text = btn.dataset.copy;
